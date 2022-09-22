@@ -1,7 +1,8 @@
 "use strict"
 const express = require('express')
+    , config = require('./config')
 
-const port = process.env.PORT || 5000
+const port = config.port
 const app = express()
 
 app.use(express.json())
