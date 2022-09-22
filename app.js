@@ -2,6 +2,7 @@
 const express = require('express')
     , config = require('./config')
     , barangRoute = require('./routes/barangRoute')
+    , orderRoute = require('./routes/orderRoute')
 
 const port = config.port
 const app = express()
@@ -10,7 +11,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 // routes
-app.use('/api', barangRoute)
+app.use('/api', barangRoute, orderRoute)
 
 // global route
 app.get('/', (req, res) => {
