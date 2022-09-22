@@ -15,5 +15,24 @@ module.exports = {
                 message: error.message
             })
         }
+    },
+    create: async (req, res) => {
+        try {
+            const { name, jenis, stok } = req.body
+            if(name == undefined || jenis == undefined || stok == undefined) throw new Error('Data harus dilengkapi')
+            
+            const barang = {
+                name, jenis, stok
+            }
+            await barangModel.createBarang(barang)
+            res.status(201).json({
+                status: 'Success'
+            })
+        } catch (error) {
+            res.status(400).json({
+                status: 'Failed',
+                message: error.message
+            })
+        }
     }
 }
