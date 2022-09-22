@@ -25,8 +25,6 @@ module.exports = {
             })
 
         } catch (error) {
-            // await trans.rollback()
-            // await trans.release()
             res.status(400).json({
                 status: 'Failed',
                 message: error.message

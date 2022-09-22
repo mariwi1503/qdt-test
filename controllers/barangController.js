@@ -3,7 +3,13 @@ const barangModel = require('../models/barangModel')
 module.exports = {
     list: async (req, res) => {
         try {
-            const result = await barangModel.getAllBarang()
+            const { search, orderBy = 'name', arrBy = 'ASC' } = req.query
+            let result;
+            if(!search) {
+                result = await barangModel.getAllBarang(orderBy, arrBy)
+            } else {
+                result = await barangModel.getBarangByKeyword(search, orderBy, arrBy)
+            }
             if(result.length == 0) throw new Error('Belum ada barang')
             res.status(200).json({
                 status: 'Success',
