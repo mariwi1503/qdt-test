@@ -64,5 +64,25 @@ module.exports = {
                 message: error.message
             })
         }
+    },
+    delete: async (req, res) => {
+        try {
+            const { id } = req.params
+            // cek eksistensi order
+            const order = await orderModel.deleteOrder(id)
+            if(!order) throw new Error('Orderan tidak ditemukan')
+
+            // delete order
+            await orderModel.deleteOrder(id)
+            res.status(200).json({
+                status: 'Success'
+            })
+
+        } catch (error) {
+            res.status(400).json({
+                status: 'Failed',
+                message: error.message
+            })
+        }
     }
 }

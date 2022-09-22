@@ -4,5 +4,6 @@ const router = require('express').Router()
 router.post('/order/create', orderController.create)
 router.get('/order/list', orderController.list)
 router.get('/order/:id', orderController.read)
+router.delete('/order/:id', orderController.delete)
 
 module.exports = router

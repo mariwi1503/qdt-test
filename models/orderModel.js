@@ -28,4 +28,13 @@ module.exports = {
             throw new Error(error)
         }
     },
+    deleteOrder: async (id) => {
+        try {
+            let query = `DELETE FROM orderan WHERE id = ?`
+            const [rows, fields] = await db.query(query, id)
+            return rows
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
 }
