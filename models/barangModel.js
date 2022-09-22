@@ -27,5 +27,13 @@ module.exports = {
         } catch (error) {
             throw new Error(error)
         }
+    },
+    updateBarang: async (data, id) => {
+        try {
+            let query = `UPDATE barang set ? WHERE id = ?`
+            const [rows, fields] = await db.query(query, [data, id])
+        } catch (error) {
+            throw new Error(error)
+        }
     }
 }
