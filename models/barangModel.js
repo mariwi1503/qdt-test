@@ -35,5 +35,14 @@ module.exports = {
         } catch (error) {
             throw new Error(error)
         }
+    },
+    deleteBarang: async (id) => {
+        try {
+            let query = `DELETE FROM barang WHERE id = ?`
+            const [rows, fields] = await db.query(query, id)
+            return rows
+        } catch (error) {
+            throw new Error(error)
+        }
     }
 }

@@ -60,7 +60,7 @@ module.exports = {
             // cek eksistensi barang
             const barang = await barangModel.getBarangById(id)
             if(!barang) throw new Error('Barang tidak ditemukan')
-            
+
             let data = {}
             if(name) data.name = name
             if(jenis) data.jenis = jenis
@@ -71,6 +71,26 @@ module.exports = {
             res.status(200).json({
                 status: 'Success'
             })
+        } catch (error) {
+            res.status(400).json({
+                status: 'Failed',
+                message: error.message
+            })
+        }
+    },
+    delete: async (req, res) => {
+        try {
+            const { id } = req.params
+            // cek eksistensi barang
+            const barang = await barangModel.getBarangById(id)
+            if(!barang) throw new Error('Barang tidak ditemukan')
+
+            // delete barang
+            await barangModel.deleteBarang(id)
+            res.status(200).json({
+                status: 'Success'
+            })
+
         } catch (error) {
             res.status(400).json({
                 status: 'Failed',
