@@ -47,5 +47,22 @@ module.exports = {
                 message: error.message
             })
         }
+    },
+    read: async (req, res) => {
+        try {
+            const { id } = req.params
+            const order = await orderModel.getOrderById(id)
+            if(!order) throw new Error('Orderan tidak ditemukan')
+
+            res.status(200).json({
+                status: 'Success',
+                data: order
+            })
+        } catch (error) {
+            res.status(400).json({
+                status: 'Failed',
+                message: error.message
+            })
+        }
     }
 }
