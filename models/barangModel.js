@@ -18,5 +18,14 @@ module.exports = {
         } catch (error) {
             throw new Error(error)
         }
+    },
+    getBarangById: async (id) => {
+        try {
+            let query = `SELECT * FROM barang WHERE id = ?`
+            const [[rows], fields] = await db.query(query, id)
+            return rows
+        } catch (error) {
+            throw new Error(error)
+        }
     }
 }
