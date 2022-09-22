@@ -9,5 +9,14 @@ module.exports = {
         } catch (error) {
             throw new Error(error)
         }
+    },
+    getAllOrder: async () => {
+        try {
+            let query = `SELECT * FROM orderan`
+            const [rows, fields] = await db.query(query)
+            return rows
+        } catch (error) {
+            throw new Error(error)
+        }
     }
 }

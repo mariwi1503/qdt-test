@@ -32,5 +32,20 @@ module.exports = {
                 message: error.message
             })
         }
+    },
+    list: async (req, res) => {
+        try {
+            const result = await orderModel.getAllOrder()
+            if(result.length == 0) throw new Error('Belum ada orderan')
+            res.status(200).json({
+                status: 'Success',
+                data: result
+            })
+        } catch (error) {
+            res.status(400).json({
+                status: 'Failed',
+                message: error.message
+            })
+        }
     }
 }
