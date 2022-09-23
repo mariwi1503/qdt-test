@@ -16,7 +16,7 @@ app.use('/api', barangRoute, orderRoute, salesRoute)
 
 // global route
 app.get('/', (req, res) => {
-    res.send('QDT PROJECT')
+    res.send('<h1>Selamat datang semuanya</h1> Daftar endpoint: https://documenter.getpostman.com/view/15653378/2s7ZLdNZFa')
 })
 
 // unhandled route
