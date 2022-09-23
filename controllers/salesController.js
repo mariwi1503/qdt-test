@@ -17,5 +17,23 @@ module.exports = {
                 message: error.message
             })
         }
+    },
+    salesTotal: async (req, res) => {
+        try {
+            const total = await salesModel.getTotal()
+            const result = {
+                terbanyak: total[0],
+                terendah: total[total.length - 1]
+            }
+            res.status(200).json({
+                status: 'Success',
+                data: result
+            })
+        } catch (error) {
+            res.status(400).json({
+                status: 'Failed',
+                message: error.message
+            })
+        }
     }
 }
