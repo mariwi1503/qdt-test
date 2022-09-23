@@ -62,6 +62,7 @@ req.body(optional) = { name: string, jenis: string, stok: number }
 
 DELETE /barang/:id
 req.params = { id: number }
+```
 
 ```
 GET /order/list
@@ -74,10 +75,11 @@ req.params = { id: number}
 
 DELETE /order/:id
 req.params = { id: number }
-
+```
 ```
 GET /sales/data
 req.query(optional) = { search: string, orderBy: string, arrBy: string }
 
 GET /sales/total
 req.query(optional) = { startDate: dateTime, endDate: dateTime }
+```
