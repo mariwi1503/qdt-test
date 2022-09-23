@@ -20,7 +20,8 @@ module.exports = {
     },
     salesTotal: async (req, res) => {
         try {
-            const total = await salesModel.getTotal()
+            const { startDate, endDate = new Date() } = req.query
+            const total = await salesModel.getTotal(startDate, endDate)
             const result = {
                 terbanyak: total[0],
                 terendah: total[total.length - 1]
