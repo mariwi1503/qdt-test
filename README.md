@@ -47,6 +47,8 @@ $ npm run start
 |        |                         | waktu teransaksi                                                       |
 
 ```
+
+```
 GET /barang/list
 req.query(optional) = { search: string, orderBy: string, arrBy: string }
 
@@ -76,6 +78,7 @@ req.params = { id: number}
 DELETE /order/:id
 req.params = { id: number }
 ```
+
 ```
 GET /sales/data
 req.query(optional) = { search: string, orderBy: string, arrBy: string }
