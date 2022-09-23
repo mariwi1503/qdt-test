@@ -49,6 +49,8 @@ module.exports = {
     read: async (req, res) => {
         try {
             const { id } = req.params
+            const idValid = /^\d+$/.test(id)
+            if(!idValid) throw new Error('Id harus berupa angka')
             const order = await orderModel.getOrderById(id)
             if(!order) throw new Error('Orderan tidak ditemukan')
 
@@ -66,6 +68,8 @@ module.exports = {
     delete: async (req, res) => {
         try {
             const { id } = req.params
+            const idValid = /^\d+$/.test(id)
+            if(!idValid) throw new Error('Id harus berupa angka')
             // cek eksistensi order
             const order = await orderModel.deleteOrder(id)
             if(!order) throw new Error('Orderan tidak ditemukan')

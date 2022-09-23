@@ -44,6 +44,8 @@ module.exports = {
     read: async (req, res) => {
         try {
             const { id } = req.params
+            const idValid = /^\d+$/.test(id)
+            if(!idValid) throw new Error('Id harus berupa angka')
             const barang = await barangModel.getBarangById(id)
             if(!barang) throw new Error('Barang tidak ditemukan')
 
@@ -61,6 +63,8 @@ module.exports = {
     update: async (req, res) => {
         try {
             const { id } = req.params
+            const idValid = /^\d+$/.test(id)
+            if(!idValid) throw new Error('Id harus berupa angka')
             const { name, jenis, stok } = req.body
 
             // cek eksistensi barang
@@ -87,6 +91,8 @@ module.exports = {
     delete: async (req, res) => {
         try {
             const { id } = req.params
+            const idValid = /^\d+$/.test(id)
+            if(!idValid) throw new Error('Id harus berupa angka')
             // cek eksistensi barang
             const barang = await barangModel.getBarangById(id)
             if(!barang) throw new Error('Barang tidak ditemukan')
