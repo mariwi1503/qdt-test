@@ -2,7 +2,7 @@
 
 ## Installation
 ```bash
-$ cd simple-chat
+$ cd qdt-project
 $ npm install
 ```
 
