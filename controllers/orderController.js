@@ -1,13 +1,14 @@
 const orderModel = require('../models/orderModel')
     , barangModel = require('../models/barangModel')
     , db = require('../db/connection')
+    , { createOrderSchema } = require('../helper/validation/orderValidation')
 
 module.exports = {
     create: async (req, res) => {
         const trans = db.getConnection()
         try {
-            const { barangId, quantity } = req.body
-            if(quantity == undefined || quantity === 0 || quantity == null) throw new Error('Quantity harus diisi')
+            const payload = await createOrderSchema.validateAsync(req.body)
+            const { barangId, quantity } = payload
 
             // cek eksistensi barang
             const barang = await barangModel.getBarangById(barangId)

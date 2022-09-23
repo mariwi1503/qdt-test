@@ -1,4 +1,5 @@
 const barangModel = require('../models/barangModel')
+    , {createBarangSchema, updateBarangSchema} = require('../helper/validation/barangValidation')
 
 module.exports = {
     list: async (req, res) => {
@@ -24,9 +25,9 @@ module.exports = {
     },
     create: async (req, res) => {
         try {
-            const { name, jenis, stok } = req.body
-            if(name == undefined || jenis == undefined || stok == undefined) throw new Error('Data harus dilengkapi')
-            
+            const payload = await createBarangSchema.validateAsync(req.body)
+
+            const { name, jenis, stok } = payload    
             const barang = {
                 name, jenis, stok
             }
@@ -65,7 +66,9 @@ module.exports = {
             const { id } = req.params
             const idValid = /^\d+$/.test(id)
             if(!idValid) throw new Error('Id harus berupa angka')
-            const { name, jenis, stok } = req.body
+
+            const payload = await updateBarangSchema.validateAsync(req.body)
+            const { name, jenis, stok } = payload
 
             // cek eksistensi barang
             const barang = await barangModel.getBarangById(id)
