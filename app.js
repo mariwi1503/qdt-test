@@ -1,6 +1,7 @@
 "use strict"
 const express = require('express')
     , config = require('./config')
+    , wellcome = require('./endPoint')
     , barangRoute = require('./routes/barangRoute')
     , orderRoute = require('./routes/orderRoute')
     , salesRoute = require('./routes/salesRoute')
@@ -16,7 +17,7 @@ app.use('/api', barangRoute, orderRoute, salesRoute)
 
 // global route
 app.get('/', (req, res) => {
-    res.send('<h1>Selamat datang semuanya</h1> Daftar endpoint: https://documenter.getpostman.com/view/15653378/2s7ZLdNZFa')
+    res.send(wellcome)
 })
 
 // unhandled route
